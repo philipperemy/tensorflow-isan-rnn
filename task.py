@@ -11,9 +11,9 @@ class ParenthesisTask(object):
 
         Args:
           max_count: level at which outstanding opening parenthesis stop being added
-          implied_activation_fn: how is the output of the netowkr interpreted:
+          implied_activation_fn: how is the output of the network interpreted:
             - softmax: treat it as logits, train via neg-log likelihood minimization
-            - identity: treat it as probabilites, train via least-squares
+            - identity: treat it as probabilities, train via least-squares
         """
         self.max_count = max_count
         self.implied_activation_fn = implied_activation_fn
