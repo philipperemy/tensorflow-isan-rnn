@@ -43,7 +43,7 @@ class IsanCell(RNNCell):
     def output_size(self):
         return self._num_units
 
-    def call(self, step_inputs, state, scope=None, initialization='orthogonal'):
+    def call(self, step_inputs, state, scope=None, initialization='gaussian'):
         """
         Make one step of ISAN transition.
 
@@ -55,7 +55,6 @@ class IsanCell(RNNCell):
             orthogonal: usually speeds up training, orthogonalize Gaussian matrices
             gaussian: sample gaussian matrices with a sensible scale
         """
-        single_state = state
         d = self._num_units
         n = step_inputs.shape[1].value
 
@@ -65,7 +64,7 @@ class IsanCell(RNNCell):
                 wx_ndd_init[i, :] = orth(np.random.randn(d, d)).astype(np.float32).ravel()
             wx_ndd_initializer = tf.constant_initializer(wx_ndd_init)
         elif initialization == 'gaussian':
-            wx_ndd_initializer = tf.random_normal_initializer()
+            wx_ndd_initializer = tf.random_normal_initializer(stddev=1.0 / np.sqrt(d))
         else:
             raise Exception('Unknown init type: %s' % initialization)
 
