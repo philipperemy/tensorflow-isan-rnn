@@ -25,7 +25,9 @@ The implementation was trained on the Parenthesis task. Here is the result:
   <img src="assets/run.1.png" width="500"><br><br>
   <p><i>Loss as a function of the number of steps</i></p>
 </div>
+
 ## Resources
 - The paper is available at http://proceedings.mlr.press/v70/foerster17a/foerster17a.pdf
+
 ## Contributing
 Thanks to Justin Gilmer, one of the authors of the paper for providing some source code under the Apache license.
